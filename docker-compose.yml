@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    movie_recommendation_system:
+      stdin_open: true
+      restart: always
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      entrypoint: ["sh", "entrypoint.sh"]
+      volumes:
+        - ./:/code
+        - ./.env:/code/.env
+      network_mode: host
+      # ports:
+      #   - ${PORT}:${PORT}
+      env_file:
+        - .env
